@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import UploadForm from "./components/UploadForm";
+import CSVTable from "./components/CSVTable";
+
+import { CsvProvider } from "./components/providers/CSVContextProvider";
+
+const Form = () => <UploadForm />;
+const Table = () => <CSVTable />;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <CsvProvider>
+        <Routes>
+          <Route path='/' element={<Form />} />
+          <Route path='/table' element={<Table />} />
+        </Routes>
+      </CsvProvider>
+    </BrowserRouter>
   );
 }
 
