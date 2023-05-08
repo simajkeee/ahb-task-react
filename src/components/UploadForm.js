@@ -24,10 +24,13 @@ function UploadForm() {
       formData.append("file", selectedFile);
       formData.append("page", page);
 
-      const response = await fetch(`http://localhost:8000/upload`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://arcane-escarpment-76931.herokuapp.com/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       return response.json();
     };
