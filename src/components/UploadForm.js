@@ -24,13 +24,11 @@ function UploadForm() {
       formData.append("file", selectedFile);
       formData.append("page", page);
 
-      const response = await fetch(
-        `https://arcane-escarpment-76931.herokuapp.com/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      //http://127.0.0.1:8000/upload
+      const response = await fetch(`https://csv-parser.herokuapp.com/upload`, {
+        method: "POST",
+        body: formData,
+      });
 
       return response.json();
     };
@@ -47,6 +45,7 @@ function UploadForm() {
         // console.log(rows);
       } catch (error) {
         console.error("Error uploading file:", error);
+        endFile = true;
       }
     }
     updateParsedRows(rows);
