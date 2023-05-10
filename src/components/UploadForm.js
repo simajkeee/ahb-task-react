@@ -24,11 +24,13 @@ function UploadForm() {
       formData.append("file", selectedFile);
       formData.append("page", page);
 
-      //http://127.0.0.1:8000/upload
-      const response = await fetch(`https://csv-parser.herokuapp.com/upload`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://radiant-reaches-85216.herokuapp.com/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       return response.json();
     };
