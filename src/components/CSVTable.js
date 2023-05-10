@@ -30,7 +30,7 @@ function CSVTable() {
       ) : (
         <div>
           <h1 className='message-wrapper'>
-            Failed to render the table.{" "}
+            Failed to render the table.
             <NavLink to='/'>Please try to upload a cvs file again</NavLink>.
           </h1>
         </div>
