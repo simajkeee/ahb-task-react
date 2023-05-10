@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CsvContext } from "./providers/CSVContextProvider";
+import { NavLink } from "react-router-dom";
 
 function CSVTable() {
   const { parsedRows } = useContext(CsvContext);
@@ -27,7 +28,12 @@ function CSVTable() {
           </table>
         </div>
       ) : (
-        <h1>Failed to render the table. Please upload the file: </h1>
+        <div>
+          <h1 className='message-wrapper'>
+            Failed to render the table.{" "}
+            <NavLink to='/'>Please try to upload a cvs file again</NavLink>.
+          </h1>
+        </div>
       )}
     </>
   );

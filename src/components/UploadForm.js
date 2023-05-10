@@ -57,9 +57,10 @@ function UploadForm() {
   };
 
   return isLoading ? (
-    <p className='loading'>Loading table...</p>
+    <h1 className='message-wrapper'>Loading table...</h1>
   ) : (
     <div className='formWrapper'>
+      <h1>CVS file parsing form</h1>
       <form onSubmit={handleSubmit}>
         <input type='file' onChange={handleFileChange} />
         <button type='submit'>Upload</button>
