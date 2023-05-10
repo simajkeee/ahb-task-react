@@ -8,7 +8,7 @@ function CSVTable() {
     <>
       {parsedRows.length > 0 ? (
         <div>
-          <h1>Parsed CSV table: </h1>
+          <h1 className='message-wrapper'>Parsed CSV table: </h1>
           <table>
             <tbody>
               {parsedRows.map((row, i) => {
