@@ -5,6 +5,7 @@ import { CsvContext } from "./providers/CSVContextProvider";
 function UploadForm() {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { updateParsedRows } = useContext(CsvContext);
 
   const handleFileChange = (event) => {
@@ -38,23 +39,26 @@ function UploadForm() {
     let page = 1;
     let endFile = false;
     let rows = [];
-    while (!endFile) {
-      try {
+    try {
+      setIsLoading(true);
+      while (!endFile) {
         let res = await getBatch(page);
         endFile = res.endFile;
         page++;
         rows = rows.concat(res.rows);
-        // console.log(rows);
-      } catch (error) {
-        console.error("Error uploading file:", error);
-        endFile = true;
       }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    } finally {
+      setIsLoading(false);
     }
     updateParsedRows(rows);
     navigate("/table");
   };
 
-  return (
+  return isLoading ? (
+    <p className='loading'>Loading table...</p>
+  ) : (
     <div className='formWrapper'>
       <form onSubmit={handleSubmit}>
         <input type='file' onChange={handleFileChange} />
